@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------------------------------------
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
+ * -------------------------------------------------------------------------------------------- */
 
 import * as vscode from 'vscode';
 import { RazorDocumentManager } from '../RazorDocumentManager';
@@ -21,7 +21,7 @@ export class RazorCodeActionProvider
         serviceClient: RazorLanguageServiceClient,
         logger: RazorLogger,
         private readonly compositeCodeActionTranslator: CompositeCodeActionTranslator,
-        ) {
+    ) {
         super(documentSynchronizer, documentManager, serviceClient, logger);
     }
 
@@ -29,7 +29,7 @@ export class RazorCodeActionProvider
         document: vscode.TextDocument,
         range: vscode.Range | vscode.Selection,
         context: vscode.CodeActionContext,
-        token: vscode.CancellationToken) {
+        token: vscode.CancellationToken): Promise<vscode.Command[] | null> {
         try {
             const startPosition = new vscode.Position(range.start.line, range.start.character);
             const startProjection = await this.getProjection(document, startPosition, token);
@@ -53,7 +53,11 @@ export class RazorCodeActionProvider
             const codeActions = await vscode.commands.executeCommand<vscode.Command[]>(
                 'vscode.executeCodeActionProvider',
                 startProjection.uri,
-                projectedRange) as vscode.Command[];
+                projectedRange);
+
+            if (!codeActions) {
+                return null;
+            }
 
             if (codeActions.length > 0) {
                 const result = this.filterCodeActions(codeActions, context, document);
@@ -68,7 +72,11 @@ export class RazorCodeActionProvider
         }
     }
 
-    private filterCodeActions(codeActions: vscode.Command[], context: vscode.CodeActionContext, document: vscode.TextDocument) {
+    private filterCodeActions(
+        codeActions: vscode.Command[],
+        context: vscode.CodeActionContext,
+        document: vscode.TextDocument,
+    ): Array<vscode.Command> {
         const result = new Array<vscode.Command>();
         for (const codeAction of codeActions) {
             if (this.compositeCodeActionTranslator.canHandleCodeAction(codeAction, context, document)) {

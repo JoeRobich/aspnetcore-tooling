@@ -1,7 +1,7 @@
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * -------------------------------------------------------------------------------------------- */
 
 /**
  * This is the place for API experiments and proposals.
@@ -14,10 +14,10 @@
  * - Copy this file to your project.
  */
 
-/* tslint:disable:max-classes-per-file */
+/* eslint-disable max-classes-per-file */
 declare module 'vscode' {
 
-    //#region Semantic tokens: https://github.com/microsoft/vscode/issues/86415
+    // #region Semantic tokens: https://github.com/microsoft/vscode/issues/86415
 
     export class SemanticTokensLegend {
         public readonly tokenTypes: string[];
@@ -224,7 +224,5 @@ declare module 'vscode' {
         export function registerDocumentRangeSemanticTokensProvider(selector: DocumentSelector, provider: DocumentRangeSemanticTokensProvider, legend: SemanticTokensLegend): Disposable;
     }
 
-    //#endregion
-
+    // #endregion
 }
-/* tslint:enable:max-classes-per-file */

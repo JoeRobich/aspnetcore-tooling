@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------------------------------------
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
+ * -------------------------------------------------------------------------------------------- */
 
 import * as vscode from 'vscode';
 import { IRazorCodeActionTranslator } from './IRazorCodeActionTranslator';
@@ -40,7 +40,7 @@ export class RazorFullyQualifiedCodeActionTranslator implements IRazorCodeAction
         return [ uri, newEdit ];
     }
 
-    public canHandleEdit(uri: vscode.Uri, edit: vscode.TextEdit) {
+    public canHandleEdit(uri: vscode.Uri, edit: vscode.TextEdit): boolean {
         // CodeActions do not have a distinct identifier, so we must determine
         // if a potential edit is a Fully Qualified Namespace edit. We do so by
         // examining whether the new text of the edit fits one of two potential forms.
@@ -56,8 +56,9 @@ export class RazorFullyQualifiedCodeActionTranslator implements IRazorCodeAction
     public canHandleCodeAction(
         codeAction: vscode.Command,
         codeContext: vscode.CodeActionContext,
-        document: vscode.TextDocument): boolean {
-        const isMissingDiag = (value: vscode.Diagnostic) => {
+        document: vscode.TextDocument,
+    ): boolean {
+        const isMissingDiag = (value: vscode.Diagnostic): boolean => {
             return value.severity === vscode.DiagnosticSeverity.Error &&
                 value.code === RazorFullyQualifiedCodeActionTranslator.expectedCode;
         };

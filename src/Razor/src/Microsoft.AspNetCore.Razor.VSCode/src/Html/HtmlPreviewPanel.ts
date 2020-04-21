@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------------------------------------
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
+ * -------------------------------------------------------------------------------------------- */
 
 import * as vscode from 'vscode';
 import { IRazorDocumentChangeEvent } from '../IRazorDocumentChangeEvent';
@@ -20,7 +20,7 @@ export class HtmlPreviewPanel {
         documentManager.onChange((event) => this.documentChanged(event));
     }
 
-    public async show() {
+    public async show(): Promise<void> {
         if (this.panel) {
             this.panel.reveal(vscode.ViewColumn.Two);
         } else {
@@ -28,23 +28,23 @@ export class HtmlPreviewPanel {
                 HtmlPreviewPanel.viewType,
                 'Razor HTML Preview',
                 vscode.ViewColumn.Two, {
-                enableScripts: true,
-                // Dissallow any remote sources
-                localResourceRoots: [],
-            });
+                    enableScripts: true,
+                    // Dissallow any remote sources
+                    localResourceRoots: [],
+                });
             this.attachToCurrentPanel();
         }
 
         await this.update();
     }
 
-    public async revive(panel: vscode.WebviewPanel) {
+    public async revive(panel: vscode.WebviewPanel): Promise<void> {
         this.panel = panel;
         this.attachToCurrentPanel();
         await this.update();
     }
 
-    private async documentChanged(event: IRazorDocumentChangeEvent) {
+    private async documentChanged(event: IRazorDocumentChangeEvent): Promise<void> {
         if (!this.panel) {
             return;
         }
@@ -56,8 +56,9 @@ export class HtmlPreviewPanel {
         }
     }
 
-    private attachToCurrentPanel() {
+    private attachToCurrentPanel(): void {
         if (!this.panel) {
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             vscode.window.showErrorMessage('Unexpected error when attaching to HTML preview window.');
             return;
         }
@@ -70,6 +71,7 @@ export class HtmlPreviewPanel {
                     }
 
                     await vscode.env.clipboard.writeText(this.htmlContent);
+                    // eslint-disable-next-line @typescript-eslint/no-floating-promises
                     vscode.window.showInformationMessage('Razor HTML copied to clipboard');
                     return;
             }
@@ -77,7 +79,7 @@ export class HtmlPreviewPanel {
         this.panel.onDidDispose(() => this.panel = undefined);
     }
 
-    private async update() {
+    private async update(): Promise<void> {
         if (!this.panel) {
             return;
         }

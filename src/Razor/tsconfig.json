@@ -7,12 +7,18 @@
     "strict": true,
     "moduleResolution": "node",
     "noUnusedLocals": true,
+    "skipDefaultLibCheck": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "rootDirs": [
+      "src/Microsoft.AspNetCore.Razor.VSCode/",
+      "src/Microsoft.AspNetCore.Razor.VSCode.Extension/",
+      "test/Microsoft.AspNetCore.Razor.VSCode.Grammar.Test/",
+      "test/Microsoft.AspNetCore.Razor.VSCode.Test/",
+      "test/VSCode.FunctionalTest/"
+    ],
     "sourceMap": true,
     "baseUrl": ".",
-    "paths": {
-      "microsoft.aspnetcore.razor.vscode": [
-        "./src/Microsoft.AspNetCore.Razor.VSCode"
-      ]
-    }
-  }
+  },
+  "exclude": ["dist", "node_modules"]
 }

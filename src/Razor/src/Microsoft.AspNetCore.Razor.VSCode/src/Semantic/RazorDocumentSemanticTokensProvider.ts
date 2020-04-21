@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------------------------------------
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
+ * -------------------------------------------------------------------------------------------- */
 
 import * as vscode from 'vscode';
 import { RazorLanguageFeatureBase } from '../RazorLanguageFeatureBase';
@@ -11,7 +11,8 @@ export class RazorDocumentSemanticTokensProvider
     extends RazorLanguageFeatureBase
     implements vscode.DocumentSemanticTokensProvider {
 
-    public async provideDocumentSemanticTokens(document: vscode.TextDocument, token: vscode.CancellationToken) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    public async provideDocumentSemanticTokens(document: vscode.TextDocument, token: vscode.CancellationToken): Promise<vscode.SemanticTokens | undefined> {
         const semanticTokenResponse = await this.serviceClient.mapSemanticTokens(LanguageKind.Razor, document.uri);
 
         if (semanticTokenResponse) {

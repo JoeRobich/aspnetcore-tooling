@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------------------------------------
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
+ * -------------------------------------------------------------------------------------------- */
 
 import * as vscode from 'vscode';
 import { CompositeCodeActionTranslator } from './CodeActions/CompositeRazorCodeActionTranslator';
@@ -29,7 +29,8 @@ export class RazorCSharpLanguageMiddleware implements LanguageMiddleware {
         private readonly logger: RazorLogger,
         private readonly compositeCodeActionTranslator: CompositeCodeActionTranslator) {}
 
-    public async remapWorkspaceEdit(workspaceEdit: vscode.WorkspaceEdit, token: vscode.CancellationToken) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    public async remapWorkspaceEdit(workspaceEdit: vscode.WorkspaceEdit, token: vscode.CancellationToken): Promise<vscode.WorkspaceEdit> {
         const map = new Map<vscode.Uri, vscode.TextEdit[]>();
 
         // The returned edits will be for the projected C# documents. We now need to re-map that to the original document.
@@ -89,7 +90,8 @@ export class RazorCSharpLanguageMiddleware implements LanguageMiddleware {
         return result;
     }
 
-    public async remapLocations(locations: vscode.Location[], token: vscode.CancellationToken) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    public async remapLocations(locations: vscode.Location[], token: vscode.CancellationToken): Promise<vscode.Location[]> {
         const result: vscode.Location[] = [];
 
         for (const location of locations) {
@@ -131,7 +133,7 @@ export class RazorCSharpLanguageMiddleware implements LanguageMiddleware {
         return result;
     }
 
-    private addElementToDictionary(map: Map<vscode.Uri, vscode.TextEdit[]>, uri: vscode.Uri, edit: vscode.TextEdit) {
+    private addElementToDictionary(map: Map<vscode.Uri, vscode.TextEdit[]>, uri: vscode.Uri, edit: vscode.TextEdit): void {
         let mapArray: vscode.TextEdit[] | undefined;
 
         if (map.has(uri)) {

@@ -1,7 +1,7 @@
 {
   "name": "microsoft.aspnetcore.razor.vscode",
   "private": true,
-  "version": "0.0.1",
+  "version": "5.0.0-dev",
   "defaults": {
     "razor": "0.0.1"
   },
@@ -9,10 +9,14 @@
   "devDependencies": {
     "@types/node": "^10.9.4",
     "@types/vscode": "1.31.0",
+    "@typescript-eslint/eslint-plugin": "^2.29.0",
+    "@typescript-eslint/parser": "^2.29.0",
+    "eslint": "6.8.0",
+    "eslint-plugin-jsdoc": "22.1.0",
+    "eslint-plugin-notice": "0.8.9",
     "js-yaml": ">=3.13.1",
     "rimraf": "2.6.3",
-    "tslint": "^5.11.0",
-    "typescript": "3.3.4000"
+    "typescript": "3.8.3"
   },
   "dependencies": {
     "vscode-html-languageservice": "2.1.7",
@@ -26,7 +30,7 @@
   "scripts": {
     "clean": "rimraf out && rimraf dist",
     "build": "yarn run clean && yarn run lint && tsc -p ./",
-    "lint": "tslint ./src/**/*.ts --project ./",
+    "lint": "eslint --ext .ts ./src",
     "watch": "tsc -watch -p ./"
   }
 }

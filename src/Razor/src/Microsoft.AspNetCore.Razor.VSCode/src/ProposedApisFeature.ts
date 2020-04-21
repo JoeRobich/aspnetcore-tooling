@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------------------------------------
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
+ * -------------------------------------------------------------------------------------------- */
 
 import * as vscode from 'vscode';
 import * as vscodeapi from 'vscode';
@@ -20,7 +20,7 @@ export class ProposedApisFeature {
     ) {
     }
 
-    public async register(vscodeType: typeof vscodeapi, localRegistrations: vscode.Disposable[]) {
+    public async register(vscodeType: typeof vscodeapi, localRegistrations: vscode.Disposable[]): Promise<void> {
         if (vscodeType.env.appName.endsWith('Insiders')) {
             const legend = await this.languageServiceClient.getSemanticTokenLegend();
             const semanticTokenProvider = new RazorDocumentSemanticTokensProvider(this.documentSynchronizer, this.documentManager, this.languageServiceClient, this.logger);

@@ -6,6 +6,14 @@
     "*.targets": "xml",
     "*.tasks": "xml"
   },
+  "eslint.format.enable": true,
+  "eslint.workingDirectories": [
+    "src/Razor/src/Microsoft.AspNetCore.Razor.VSCode",
+    "src/Razor/src/Microsoft.AspNetCore.Razor.VSCode.Extension",
+    "src/Razor/test/Microsoft.AspNetCore.Razor.VSCode.Grammar.Test",
+    "src/Razor/test/Microsoft.AspNetCore.Razor.VSCode.Test",
+    "src/Razor/test/VSCode.FunctionalTest"
+  ],
   "[yaml]": {
     "editor.tabSize": 2
   },

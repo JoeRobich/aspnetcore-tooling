@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------------------------------------
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
+ * -------------------------------------------------------------------------------------------- */
 
 import { HostEventStream, TelemetryEvent } from './HostEventStream';
 import { Trace } from './Trace';
@@ -18,7 +18,7 @@ export class TelemetryReporter {
         this.eventStream.post(this.razorExtensionActivated);
     }
 
-    public reportTraceLevel(trace: Trace) {
+    public reportTraceLevel(trace: Trace): void {
         const traceLevelEvent = new TelemetryEvent(
             'VSCode.Razor.TraceLevel',
             {
@@ -27,19 +27,19 @@ export class TelemetryReporter {
         this.eventStream.post(traceLevelEvent);
     }
 
-    public reportErrorOnServerStart(error: Error) {
+    public reportErrorOnServerStart(error: Error): void {
         this.reportError('VSCode.Razor.ErrorOnServerStart', error);
     }
 
-    public reportErrorOnActivation(error: Error) {
+    public reportErrorOnActivation(error: Error): void {
         this.reportError('VSCode.Razor.ErrorOnActivation', error);
     }
 
-    public reportDebugLanguageServer() {
+    public reportDebugLanguageServer(): void {
         this.eventStream.post(this.debugLanguageServerEvent);
     }
 
-    public reportWorkspaceContainsRazor() {
+    public reportWorkspaceContainsRazor(): void {
         if (this.reportedWorkspaceContainsRazor) {
             return;
         }
@@ -48,7 +48,7 @@ export class TelemetryReporter {
         this.eventStream.post(this.workspaceContainsRazorEvent);
     }
 
-    private reportError(eventName: string, error: Error) {
+    private reportError(eventName: string, error: Error): void {
         const errorOnActivationEvent = new TelemetryEvent(
             eventName,
             {
