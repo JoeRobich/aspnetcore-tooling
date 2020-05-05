@@ -26,6 +26,7 @@ namespace Microsoft.VisualStudio.RazorExtension
     {
         public const string PackageGuidString = "13b72f58-279e-49e0-a56d-296be02f0805";
         public const string CSharpPackageGuidString = "13c3bbb4-f18f-4111-9f54-a0fb010d9194";
+        public const string HTMLPackageGuidString = "cf49ec7d-92b1-4bbd-9254-9cc13978e82e";
 
         private RazorEditorFactory _editorFactory;
 
@@ -38,6 +39,7 @@ namespace Microsoft.VisualStudio.RazorExtension
             // Explicitly trigger the load of the CSharp package. This ensures that UI-bound services are appropriately prefetched. Ideally, we shouldn't need this but until Roslyn fixes it on their side, we have to live with it.
             var shellService = (IVsShell7)AsyncPackage.GetGlobalService(typeof(SVsShell));
             await shellService.LoadPackageAsync(new Guid(CSharpPackageGuidString));
+            await shellService.LoadPackageAsync(new Guid(HTMLPackageGuidString));
 
             _editorFactory = new RazorEditorFactory(this);
             RegisterEditorFactory(_editorFactory);
