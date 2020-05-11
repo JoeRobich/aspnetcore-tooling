@@ -1,7 +1,7 @@
 {
   "name": "microsoft.aspnetcore.razor.vscode",
   "private": true,
-  "version": "5.0.0-dev",
+  "version": "0.0.1",
   "defaults": {
     "razor": "0.0.1"
   },
@@ -9,11 +9,7 @@
   "devDependencies": {
     "@types/node": "^10.9.4",
     "@types/vscode": "1.31.0",
-    "@typescript-eslint/eslint-plugin": "^2.29.0",
-    "@typescript-eslint/parser": "^2.29.0",
     "eslint": "6.8.0",
-    "eslint-plugin-jsdoc": "22.1.0",
-    "eslint-plugin-notice": "0.8.9",
     "js-yaml": ">=3.13.1",
     "rimraf": "2.6.3",
     "typescript": "3.8.3"

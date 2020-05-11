@@ -253,14 +253,10 @@
     "compile:TextMate": "npx js-yaml syntaxes/aspnetcorerazor.tmLanguage.yml > syntaxes/aspnetcorerazor.tmLanguage.json"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.29.0",
-    "@typescript-eslint/parser": "^2.29.0",
     "@types/node": "9.4.7",
     "@types/vscode": "1.31.0",
     "cross-env": "^5.2.0",
     "eslint": "6.8.0",
-    "eslint-plugin-jsdoc": "22.1.0",
-    "eslint-plugin-notice": "0.8.9",
     "js-yaml": ">=3.13.1",
     "rimraf": "2.6.3",
     "ts-node": "^7.0.1",
@@ -268,6 +264,6 @@
   },
   "dependencies": {
     "diff": ">=3.5.0",
-    "microsoft.aspnetcore.razor.vscode": "link:../Microsoft.AspNetCore.Razor.VSCode"
+    "microsoft.aspnetcore.razor.vscode": "^0.0.1"
   }
 }
