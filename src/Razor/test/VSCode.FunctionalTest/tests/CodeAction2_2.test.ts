@@ -82,8 +82,7 @@ suite('Code Actions 2.2', () => {
         });
 
         if (codeAction.command && codeAction.arguments) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
-            vscode.commands.executeCommand(codeAction.command, codeAction.arguments);
+            void vscode.commands.executeCommand(codeAction.command, codeAction.arguments);
         }
 
         await pollUntil(() => {

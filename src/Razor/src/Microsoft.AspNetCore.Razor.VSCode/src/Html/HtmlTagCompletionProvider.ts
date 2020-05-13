@@ -162,11 +162,9 @@ export class HtmlTagCompletionProvider {
 
             const selections = activeEditor.selections;
             if (selections.length && selections.some(s => s.active.isEqual(position))) {
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                activeEditor.insertSnippet(new vscode.SnippetString(tagCompletion), selections.map(s => s.active));
+                void activeEditor.insertSnippet(new vscode.SnippetString(tagCompletion), selections.map(s => s.active));
             } else {
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                activeEditor.insertSnippet(new vscode.SnippetString(tagCompletion), position);
+                void activeEditor.insertSnippet(new vscode.SnippetString(tagCompletion), position);
             }
         }, 75);
     }

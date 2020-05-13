@@ -19,8 +19,7 @@ function razorTraceConfigurationChangeHandler(languageServerClient: RazorLanguag
     const promptText = 'Would you like to restart the Razor Language Server to enable the Razor trace configuration change?';
     const restartButtonText = 'Restart';
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    vscode.window.showInformationMessage(promptText, restartButtonText).then(async result => {
+    void vscode.window.showInformationMessage(promptText, restartButtonText).then(async result => {
         if (result !== restartButtonText) {
             return;
         }

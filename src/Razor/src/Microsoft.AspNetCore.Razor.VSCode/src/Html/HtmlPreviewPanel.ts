@@ -58,8 +58,7 @@ export class HtmlPreviewPanel {
 
     private attachToCurrentPanel(): void {
         if (!this.panel) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
-            vscode.window.showErrorMessage('Unexpected error when attaching to HTML preview window.');
+            void vscode.window.showErrorMessage('Unexpected error when attaching to HTML preview window.');
             return;
         }
 
@@ -71,8 +70,7 @@ export class HtmlPreviewPanel {
                     }
 
                     await vscode.env.clipboard.writeText(this.htmlContent);
-                    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                    vscode.window.showInformationMessage('Razor HTML copied to clipboard');
+                    void vscode.window.showInformationMessage('Razor HTML copied to clipboard');
                     return;
             }
         });

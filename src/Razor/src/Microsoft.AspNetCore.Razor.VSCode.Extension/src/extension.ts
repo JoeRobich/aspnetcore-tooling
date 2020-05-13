@@ -23,8 +23,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         __dirname, '..', '..', '..', '..', '..', 'artifacts', 'bin', 'rzls', config, 'net5.0');
 
     if (!fs.existsSync(languageServerDir)) {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        vscode.window.showErrorMessage(`The Razor Language Server project has not yet been built - could not find ${languageServerDir}`);
+        void vscode.window.showErrorMessage(`The Razor Language Server project has not yet been built - could not find ${languageServerDir}`);
         return;
     }
 

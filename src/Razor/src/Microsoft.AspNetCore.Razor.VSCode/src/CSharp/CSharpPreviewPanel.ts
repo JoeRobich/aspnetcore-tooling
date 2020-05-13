@@ -58,8 +58,7 @@ export class CSharpPreviewPanel {
 
     private attachToCurrentPanel(): void {
         if (!this.panel) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
-            vscode.window.showErrorMessage('Unexpected error when attaching to C# preview window.');
+            void vscode.window.showErrorMessage('Unexpected error when attaching to C# preview window.');
             return;
         }
 
@@ -71,8 +70,7 @@ export class CSharpPreviewPanel {
                     }
 
                     await vscode.env.clipboard.writeText(this.csharpContent);
-                    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                    vscode.window.showInformationMessage('Razor C# copied to clipboard');
+                    void vscode.window.showInformationMessage('Razor C# copied to clipboard');
                     return;
             }
         });

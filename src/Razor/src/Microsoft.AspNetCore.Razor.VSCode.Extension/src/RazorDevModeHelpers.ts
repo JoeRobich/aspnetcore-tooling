@@ -30,8 +30,7 @@ export function registerRazorDevModeHelpers(context: vscode.ExtensionContext): P
             __dirname, '..', '..', '..', '..', '..', 'artifacts', 'bin', 'Microsoft.AspNetCore.Razor.OmniSharpPlugin', config, 'net472', 'Microsoft.AspNetCore.Razor.OmniSharpPlugin.dll');
 
         if (!fs.existsSync(pluginPath)) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
-            vscode.window.showErrorMessage(`The Razor Language Server O# plugin has not yet been built - could not find ${pluginPath}`);
+            void vscode.window.showErrorMessage(`The Razor Language Server O# plugin has not yet been built - could not find ${pluginPath}`);
             return;
         }
 
@@ -50,8 +49,7 @@ export function ensureWorkspaceIsConfigured(): boolean {
     const razorConfiguration = vscode.workspace.getConfiguration('razor');
     if (!razorConfiguration.get('devmode')) {
         // Running in a workspace without devmode enabled. We should prompt the user to configure the workspace.
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        vscode.window.showErrorMessage(
+        void vscode.window.showErrorMessage(
             'This workspace is not configured to use the local Razor extension.',
             'Configure and Reload').then(async (reloadResponse) => {
             if (reloadResponse === 'Configure and Reload') {

@@ -50,8 +50,7 @@ export class ReportIssuePanel {
 
     private attachToCurrentPanel(): void {
         if (!this.panel) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
-            vscode.window.showErrorMessage('Unexpected error when attaching to report Razor issue window.');
+            void vscode.window.showErrorMessage('Unexpected error when attaching to report Razor issue window.');
             return;
         }
 
@@ -60,8 +59,7 @@ export class ReportIssuePanel {
                 case 'copyIssue':
                     if (!this.issueContent) {
                         if (!this.dataCollector) {
-                            // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                            vscode.window.showErrorMessage('You must first start the data collection before copying.');
+                            void vscode.window.showErrorMessage('You must first start the data collection before copying.');
                             return;
                         }
                         const collectionResult = this.dataCollector.collect();
@@ -70,8 +68,7 @@ export class ReportIssuePanel {
                     }
 
                     await vscode.env.clipboard.writeText(this.issueContent);
-                    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                    vscode.window.showInformationMessage('Razor issue copied to clipboard');
+                    void vscode.window.showInformationMessage('Razor issue copied to clipboard');
                     return;
                 case 'startIssue':
                     if (this.dataCollector) {
@@ -80,18 +77,15 @@ export class ReportIssuePanel {
                     }
                     this.issueContent = undefined;
                     this.dataCollector = this.dataCollectorFactory.create();
-                    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                    vscode.window.showInformationMessage('Razor issue data collection started. Reproduce the issue then press "Stop"');
+                    void vscode.window.showInformationMessage('Razor issue data collection started. Reproduce the issue then press "Stop"');
                     return;
                 case 'stopIssue':
                     if (!this.dataCollector) {
-                        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                        vscode.window.showErrorMessage('You must first start the data collection before stopping.');
+                        void vscode.window.showErrorMessage('You must first start the data collection before stopping.');
                         return;
                     }
                     this.dataCollector.stop();
-                    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                    vscode.window.showInformationMessage('Razor issue data collection stopped. Copying issue content...');
+                    void vscode.window.showInformationMessage('Razor issue data collection stopped. Copying issue content...');
                     return;
             }
         });

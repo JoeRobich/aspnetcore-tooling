@@ -70,8 +70,7 @@ export async function activate(vscodeType: typeof vscodeapi, context: ExtensionC
         const razorFormattingFeature = new RazorFormattingFeature(languageServerClient, documentManager, logger);
 
         const onStartRegistration = languageServerClient.onStart(async () => {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
-            vscodeType.commands.executeCommand<void>('omnisharp.registerLanguageMiddleware', razorLanguageMiddleware);
+            void vscodeType.commands.executeCommand<void>('omnisharp.registerLanguageMiddleware', razorLanguageMiddleware);
             const documentSynchronizer = new RazorDocumentSynchronizer(documentManager, logger);
             const provisionalCompletionOrchestrator = new ProvisionalCompletionOrchestrator(
                 documentManager,
