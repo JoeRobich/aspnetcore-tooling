@@ -11,8 +11,7 @@ export class RazorDocumentSemanticTokensProvider
     extends RazorLanguageFeatureBase
     implements vscode.DocumentSemanticTokensProvider {
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public async provideDocumentSemanticTokens(document: vscode.TextDocument, token: vscode.CancellationToken): Promise<vscode.SemanticTokens | undefined> {
+    public async provideDocumentSemanticTokens(document: vscode.TextDocument, _token: vscode.CancellationToken): Promise<vscode.SemanticTokens | undefined> {
         const semanticTokenResponse = await this.serviceClient.mapSemanticTokens(LanguageKind.Razor, document.uri);
 
         if (semanticTokenResponse) {

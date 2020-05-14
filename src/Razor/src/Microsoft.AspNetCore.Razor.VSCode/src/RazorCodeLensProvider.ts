@@ -47,8 +47,7 @@ export class RazorCodeLensProvider
         });
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public async provideCodeLenses(document: vscode.TextDocument, token: vscode.CancellationToken): Promise<vscode.CodeLens[] | undefined> {
+    public async provideCodeLenses(document: vscode.TextDocument, _token: vscode.CancellationToken): Promise<vscode.CodeLens[] | undefined> {
         try {
             const razorDocument = await this.documentManager.getDocument(document.uri);
             if (!razorDocument) {

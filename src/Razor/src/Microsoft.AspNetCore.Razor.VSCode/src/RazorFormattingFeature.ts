@@ -31,8 +31,7 @@ export class RazorFormattingFeature {
             async (request, token) => this.handleRangeFormatting(request, token));
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    private async handleRangeFormatting(request: RazorDocumentRangeFormattingRequest, token: CancellationToken): Promise<RazorDocumentRangeFormattingResponse> {
+    private async handleRangeFormatting(request: RazorDocumentRangeFormattingRequest, _token: CancellationToken): Promise<RazorDocumentRangeFormattingResponse> {
         if (request.kind === LanguageKind.Razor) {
             // We shouldn't attempt to format the actual Razor document here.
             // Doing so could potentially lead to an infinite loop.
