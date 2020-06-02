@@ -10,6 +10,7 @@ export class TelemetryReporter {
     private readonly razorExtensionActivated = new TelemetryEvent('VSCode.Razor.RazorExtensionActivated');
     private readonly debugLanguageServerEvent = new TelemetryEvent('VSCode.Razor.DebugLanguageServer');
     private readonly workspaceContainsRazorEvent = new TelemetryEvent('VSCode.Razor.WorkspaceContainsRazor');
+    private readonly blazorWasmDebugStartedEvent = new TelemetryEvent('VSCode.Razor.BlazorWASMDebugger.Started');
     private reportedWorkspaceContainsRazor = false;
 
     constructor(
@@ -37,6 +38,10 @@ export class TelemetryReporter {
 
     public reportDebugLanguageServer() {
         this.eventStream.post(this.debugLanguageServerEvent);
+    }
+
+    public reportBlazorWasmDebugStarted() {
+        this.eventStream.post(this.blazorWasmDebugStartedEvent);
     }
 
     public reportWorkspaceContainsRazor() {
